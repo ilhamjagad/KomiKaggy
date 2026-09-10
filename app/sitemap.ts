@@ -1,8 +1,8 @@
 import { MetadataRoute } from 'next';
-import { mangaDatabase } from '../data';
+import { mangaDatabase } from '../data'; // Sesuaikan path menuju file data.ts milikmu
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://komikaggy.vercel.app'; // Sesuaikan URL domain kamu
+  const baseUrl = 'https://komikaggy.vercel.app'; // Ganti sesuai domain Vercel kamu
 
   // Halaman Statis
   const routes = ['', '/komik'].map((route) => ({
@@ -10,7 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: new Date(),
   }));
 
-  // Halaman Detail Komik
+  // Halaman Dinamis Komik
   const mangaRoutes = mangaDatabase.map((manga) => ({
     url: `${baseUrl}/manga/${manga.id}`,
     lastModified: new Date(),
