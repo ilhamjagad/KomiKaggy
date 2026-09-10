@@ -1,11 +1,11 @@
 "use client";
 
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation'; 
 import { mangaDatabase } from '../../data';
 
-export default function SemuaKomik() {
+function KomikListContent() {
   const searchParams = useSearchParams();
   const searchURL = searchParams.get('search');
 
@@ -103,5 +103,13 @@ export default function SemuaKomik() {
         </div>
       </div>
     </main>
+  );
+}
+
+export default function SemuaKomik() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-gray-900 text-white p-8 text-center">Memuat komik...</div>}>
+      <KomikListContent />
+    </Suspense>
   );
 }
