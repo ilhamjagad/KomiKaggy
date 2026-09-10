@@ -2086,7 +2086,7 @@ export const onePiece = {
     },
     {
       chapterId: "78",
-      title: "'Belle-Mère'",
+      title: "''Belle-Mère''",
       date: "1 Mar 1999",
       pages: [
         "https://image2.komiku.to/wp-content/uploads/788363-1.jpg",
