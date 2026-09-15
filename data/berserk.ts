@@ -9,10 +9,10 @@ export const berserk = {
   chapters: [
     {
       chapterId: "1",
-      title: "Ryomen Sukuna",
-      date: "5 Mar 2018",
+      title: "Cooming Soon",
+      date: "",
       pages: [
-        "https://via.placeholder.com/800x1200/1a1a1a/ffffff?text=Jujutsu+Bab+1+Hal+1"
+        ""
       ]
     }
   ]

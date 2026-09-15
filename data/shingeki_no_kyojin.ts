@@ -9,10 +9,10 @@ export const shingeki_no_kyojin = {
   chapters: [
     {
       chapterId: "1",
-      title: "Ryomen Sukuna",
-      date: "5 Mar 2018",
+      title: "Coming Soon",
+      date: "",
       pages: [
-        "https://via.placeholder.com/800x1200/1a1a1a/ffffff?text=Jujutsu+Bab+1+Hal+1"
+        ""
       ]
     }
   ]
