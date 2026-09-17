@@ -62,28 +62,22 @@ export default function ChapterReader({ params }: { params: Promise<{ id: string
 
       {/* Navigasi Bawah yang Menempel di Layar (Sticky Bottom) */}
       <div className="fixed bottom-0 left-0 right-0 bg-gray-900/95 backdrop-blur border-t border-gray-800 p-4 flex justify-center gap-4 z-20 shadow-lg">
-        {prevChapter ? (
+        {/* Tombol Sebelumnya hanya ditampilkan jika prevChapter ada (bukan chapter 1) */}
+        {prevChapter && (
           <Link href={`/manga/${manga.id}/chapter/${prevChapter}`}>
             <button className="px-5 py-2.5 bg-gray-700 hover:bg-gray-600 rounded text-white text-sm font-medium transition-colors">
               Sebelumnya
             </button>
           </Link>
-        ) : (
-          <button disabled className="px-5 py-2.5 bg-gray-800 border border-gray-700 text-gray-600 rounded text-sm font-medium cursor-not-allowed">
-            Sebelumnya
-          </button>
         )}
 
-        {nextChapter ? (
+        {/* Tombol Selanjutnya hanya ditampilkan jika nextChapter ada */}
+        {nextChapter && (
           <Link href={`/manga/${manga.id}/chapter/${nextChapter}`}>
             <button className="px-5 py-2.5 bg-blue-600 hover:bg-blue-500 rounded text-white text-sm font-medium transition-colors">
               Selanjutnya
             </button>
           </Link>
-        ) : (
-           <button disabled className="px-5 py-2.5 bg-gray-800 border border-gray-700 text-gray-600 rounded text-sm font-medium cursor-not-allowed">
-             Chapter Terakhir
-           </button>
         )}
       </div>
     </main>
