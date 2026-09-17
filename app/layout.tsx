@@ -17,7 +17,8 @@ export const metadata: Metadata = {
     default: "KomiKaggy - Baca Komik, Manga, Manhua & Manhwa Indonesia",
     template: "%s | KomiKaggy",
   },
-  description: "KomiKaggy adalah situs baca komik, manga, manhua, dan manhwa Bahasa Indonesia terlengkap, cepat, dan bebas iklan.",
+  description:
+    "KomiKaggy adalah situs baca komik, manga, manhua, dan manhwa Bahasa Indonesia terlengkap, cepat, dan bebas iklan.",
   keywords: [
     "KomiKaggy",
     "komikaggy",
@@ -33,7 +34,8 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "KomiKaggy - Baca Komik Online Gratis",
-    description: "Situs baca komik, manga, dan manhwa Bahasa Indonesia tanpa iklan yang mengganggu.",
+    description:
+      "Situs baca komik, manga, dan manhwa Bahasa Indonesia tanpa iklan yang mengganggu.",
     url: "https://komikaggy.vercel.app",
     siteName: "KomiKaggy",
     locale: "id_ID",
@@ -41,14 +43,37 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
-  // Schema JSON-LD untuk memandu Google menampilkan nama situs "KomiKaggy"
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  // Schema JSON-LD Gabungan untuk Google Site Name dan Google AI Overview
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "KomiKaggy",
-    "alternateName": ["komikaggy", "Komi Kaggy"],
-    "url": "https://komikaggy.vercel.app"
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://komikaggy.vercel.app/#website",
+        "url": "https://komikaggy.vercel.app",
+        "name": "KomiKaggy",
+        "alternateName": ["komikaggy", "Komi Kaggy"],
+        "description":
+          "Situs baca komik, manga, manhua, dan manhwa Bahasa Indonesia terlengkap, cepat, dan bebas iklan.",
+        "inLanguage": "id-ID",
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://komikaggy.vercel.app/#organization",
+        "name": "KomiKaggy",
+        "url": "https://komikaggy.vercel.app",
+        "logo": "https://komikaggy.vercel.app/icon.png",
+        "founder": {
+          "@type": "Person",
+          "name": "MUHAMMAD ILHAM JAGAD",
+        },
+      },
+    ],
   };
 
   return (
