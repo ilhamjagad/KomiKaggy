@@ -13,9 +13,15 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://komikaggy.vercel.app"),
   title: {
     default: "KomiKaggy - Baca Komik, Manga, Manhua & Manhwa Indonesia",
     template: "%s | KomiKaggy",
+  },
+  icons: {
+    icon: "/icon.png",
+    apple: "/apple-icon.png",
+    shortcut: "/icon.png",
   },
   description:
     "KomiKaggy adalah situs baca komik, manga, manhua, dan manhwa Bahasa Indonesia terlengkap, cepat, dan bebas iklan.",
@@ -26,7 +32,7 @@ export const metadata: Metadata = {
     "baca manga",
     "baca manhwa",
     "komik indo",
-    "komikaggy vercel",
+
   ],
   authors: [{ name: "MUHAMMAD ILHAM JAGAD" }],
   verification: {
