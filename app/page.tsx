@@ -5,29 +5,63 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { mangaDatabase } from "../data";
 import UserMenu from "../components/UserMenu";
+import { useAuth } from "../context/AuthContext";
+import { collection, query, where, getDocs, orderBy, limit } from "firebase/firestore";
+import { db } from "../lib/firebase";
 
 export default function Home() {
+  const { user, loading: authLoading } = useAuth();
   const [searchQuery, setSearchQuery] = useState("");
   const [history, setHistory] = useState<any[]>([]);
   const [isMounted, setIsMounted] = useState(false);
   const router = useRouter();
 
+  // Load history from Firebase (if logged in) or localStorage
   useEffect(() => {
     setIsMounted(true);
-    const savedHistory = localStorage.getItem("komikHistory");
-    if (savedHistory) {
-      setHistory(JSON.parse(savedHistory));
-    }
-  }, []);
+    const loadHistory = async () => {
+      if (user) {
+        try {
+          const historyRef = collection(db, "readingHistory", user.uid, "chapters");
+          const q = query(historyRef, orderBy("updated_at", "desc"), limit(50));
+          const snapshot = await getDocs(q);
+          const firebaseHistory = snapshot.docs.map(doc => {
+            const d = doc.data() as any;
+            return {
+              id: d.manga_id || d.id,
+              title: d.title,
+              image: d.image,
+              chapterId: d.chapter_id || d.chapterId,
+            };
+          });
+          setHistory(firebaseHistory);
+        } catch (error) {
+          console.error("Error loading history from Firebase:", error);
+          // Fallback to localStorage
+          const savedHistory = localStorage.getItem("komikHistory");
+          if (savedHistory) setHistory(JSON.parse(savedHistory));
+        }
+      } else {
+        const savedHistory = localStorage.getItem("komikHistory");
+        if (savedHistory) setHistory(JSON.parse(savedHistory));
+      }
+    };
+    loadHistory();
+  }, [user]);
 
-  const clearHistory = () => {
-    localStorage.removeItem("komikHistory");
+  const clearHistory = async () => {
+    if (user) {
+      // Could implement Firebase clear, for now just localStorage
+      localStorage.removeItem("komikHistory");
+    } else {
+      localStorage.removeItem("komikHistory");
+    }
     setHistory([]);
   };
 
   const mangaReadCounts: { [key: string]: number } = {};
   history.forEach((item) => {
-    mangaReadCounts[item.id] = (mangaReadCounts[item.id] || 0) + 1;
+    mangaReadCounts[item.manga_id || item.id] = (mangaReadCounts[item.manga_id || item.id] || 0) + 1;
   });
 
   const sortedMangaDatabase = [...mangaDatabase].sort((a, b) => {
