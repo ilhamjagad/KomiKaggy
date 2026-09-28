@@ -3,16 +3,21 @@
 import Link from 'next/link';
 import { use, useEffect } from 'react';
 import { mangaDatabase } from '../../../../../data';
+import { useAuth } from '../../../../../context/AuthContext';
+import { doc, setDoc, serverTimestamp } from 'firebase/firestore';
+import { db } from '../../../../../lib/firebase';
 
 export default function ChapterReader({ params }: { params: Promise<{ id: string, chapterId: string }> }) {
   const { id, chapterId } = use(params);
+  const { user } = useAuth();
 
   const manga = mangaDatabase.find((m) => m.id === id);
   const chapter = manga?.chapters.find((c) => c.chapterId === chapterId);
 
-  // LOGIKA PEREKAM HISTORY
+  // LOGIKA PEREKAM HISTORY (LOCAL + FIREBASE CLOUD)
   useEffect(() => {
     if (manga && chapterId) {
+      // 1. Simpan ke LocalStorage
       const saved = localStorage.getItem("komikHistory");
       let historyList = saved ? JSON.parse(saved) : [];
       
@@ -28,8 +33,21 @@ export default function ChapterReader({ params }: { params: Promise<{ id: string
       if (historyList.length > 10) historyList.pop();
       
       localStorage.setItem("komikHistory", JSON.stringify(historyList));
+
+      // 2. Simpan ke Firebase Cloud jika user terautentikasi
+      if (user) {
+        setDoc(doc(db, "readingHistory", user.uid, "chapters", manga.id), {
+          manga_id: manga.id,
+          title: manga.title,
+          image: manga.image,
+          chapter_id: chapterId,
+          updated_at: serverTimestamp(),
+        }, { merge: true }).catch((error) => {
+          console.error("Gagal simpan riwayat ke Cloud:", error);
+        });
+      }
     }
-  }, [id, chapterId, manga]);
+  }, [id, chapterId, manga, user]);
 
   if (!manga || !chapter) {
     return <div className="p-8 text-white text-center bg-gray-900 min-h-screen">Chapter tidak ditemukan!</div>;

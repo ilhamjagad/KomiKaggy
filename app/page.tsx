@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { mangaDatabase } from "../data";
+import UserMenu from "../components/UserMenu";
 
 export default function Home() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -58,20 +59,23 @@ export default function Home() {
           </p>
         </header>
 
-        {/* Kolom Pencarian dengan Fitur Live Search Dropdown */}
+        {/* Kolom Pencarian dengan Fitur Live Search Dropdown + Profile Icon */}
         <div className="max-w-4xl mx-auto mb-8 relative">
-          <input
-            type="text"
-            placeholder="Cari judul komik..."
-            className="w-full px-6 py-4 rounded-full bg-gray-800 text-white border border-gray-700 focus:outline-none focus:border-blue-500 transition-colors shadow-lg"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === "Enter" && searchQuery.trim() !== "") {
-                router.push(`/komik?search=${encodeURIComponent(searchQuery)}`);
-              }
-            }}
-          />
+          <div className="flex items-center gap-3">
+            <input
+              type="text"
+              placeholder="Cari judul komik..."
+              className="flex-1 px-6 py-4 rounded-full bg-gray-800 text-white border border-gray-700 focus:outline-none focus:border-blue-500 transition-colors shadow-lg"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" && searchQuery.trim() !== "") {
+                  router.push(`/komik?search=${encodeURIComponent(searchQuery)}`);
+                }
+              }}
+            />
+            <UserMenu />
+          </div>
 
           {/* Kotak Hasil Pencarian */}
           {searchQuery.trim() !== "" && (
