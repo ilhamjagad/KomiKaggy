@@ -3816,7 +3816,7 @@ export const onePiece = {
   "https://img.komiku.org/wp-content/uploads/788290-9.jpg",
   "https://img.komiku.org/wp-content/uploads/788290-10.jpg",
 
-]
+      ]
     },
     {
       chapterId: "152",
@@ -3972,20 +3972,17 @@ export const onePiece = {
       title: "Spiders Café at Eight O'Clock",
       date: "13 Nov 2000",
       pages: [
-
-"https://image2.komiku.to/wp-content/uploads/788281-1.jpg",
-"https://image3.komiku.to/wp-content/uploads/788281-2.jpg",
-"https://image4.komiku.to/wp-content/uploads/788281-3.jpg",
-"https://image5.komiku.to/wp-content/uploads/788281-4.jpg",
-"https://image6.komiku.to/wp-content/uploads/788281-5.jpg",
-"https://image7.komiku.to/wp-content/uploads/788281-6.jpg",
-"https://image8.komiku.to/wp-content/uploads/788281-7.jpg",
-"https://img.komiku.org/wp-content/uploads/788281-8.jpg",
-"https://img.komiku.org/wp-content/uploads/788281-9.jpg",
-"https://img.komiku.org/wp-content/uploads/788281-10.jpg",
-
+        "https://image2.komiku.to/wp-content/uploads/788281-1.jpg",
+        "https://image3.komiku.to/wp-content/uploads/788281-2.jpg",
+        "https://image4.komiku.to/wp-content/uploads/788281-3.jpg",
+        "https://image5.komiku.to/wp-content/uploads/788281-4.jpg",
+        "https://image6.komiku.to/wp-content/uploads/788281-5.jpg",
+        "https://image7.komiku.to/wp-content/uploads/788281-6.jpg",
+        "https://image8.komiku.to/wp-content/uploads/788281-7.jpg",
+        "https://img.komiku.org/wp-content/uploads/788281-8.jpg",
+        "https://img.komiku.org/wp-content/uploads/788281-9.jpg",
+        "https://img.komiku.org/wp-content/uploads/788281-10.jpg",
       ]
     },
-
   ],
 };
