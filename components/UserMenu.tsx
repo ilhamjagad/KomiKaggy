@@ -100,11 +100,7 @@ export default function UserMenu() {
 
           <div className="py-4">
             <button
-              onClick={async () => {
-                await signOut();
-                setIsOpen(false);
-                setTimeout(() => signInWithGoogle(), 100);
-              }}
+              onClick={signInWithGoogle}
               className="w-full text-left p-2.5 rounded-xl hover:bg-gray-700/60 text-gray-300 hover:text-white flex items-center justify-between transition-colors text-xs font-medium"
             >
               <span>Ganti Akun Google</span>
