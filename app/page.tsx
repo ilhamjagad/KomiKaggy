@@ -6,17 +6,16 @@ import { useRouter } from "next/navigation";
 import { mangaDatabase } from "../data";
 import UserMenu from "../components/UserMenu";
 import { useAuth } from "../context/AuthContext";
-import { collection, query, where, getDocs, orderBy, limit } from "firebase/firestore";
+import { collection, query, getDocs, orderBy, limit, doc, writeBatch } from "firebase/firestore";
 import { db } from "../lib/firebase";
 
 export default function Home() {
-  const { user, loading: authLoading } = useAuth();
+  const { user } = useAuth();
   const [searchQuery, setSearchQuery] = useState("");
   const [history, setHistory] = useState<any[]>([]);
   const [isMounted, setIsMounted] = useState(false);
   const router = useRouter();
 
-  // Load history from Firebase (if logged in) or localStorage
   useEffect(() => {
     setIsMounted(true);
     const loadHistory = async () => {
@@ -25,7 +24,7 @@ export default function Home() {
           const historyRef = collection(db, "readingHistory", user.uid, "chapters");
           const q = query(historyRef, orderBy("updated_at", "desc"), limit(50));
           const snapshot = await getDocs(q);
-          const firebaseHistory = snapshot.docs.map(doc => {
+          const firebaseHistory = snapshot.docs.map((doc) => {
             const d = doc.data() as any;
             return {
               id: d.manga_id || d.id,
@@ -37,12 +36,11 @@ export default function Home() {
           setHistory(firebaseHistory);
         } catch (error) {
           console.error("Error loading history from Firebase:", error);
-          // Fallback to localStorage
-          const savedHistory = localStorage.getItem("komikHistory");
+          const savedHistory = sessionStorage.getItem("komikHistory");
           if (savedHistory) setHistory(JSON.parse(savedHistory));
         }
       } else {
-        const savedHistory = localStorage.getItem("komikHistory");
+        const savedHistory = sessionStorage.getItem("komikHistory");
         if (savedHistory) setHistory(JSON.parse(savedHistory));
       }
     };
@@ -51,10 +49,17 @@ export default function Home() {
 
   const clearHistory = async () => {
     if (user) {
-      // Could implement Firebase clear, for now just localStorage
-      localStorage.removeItem("komikHistory");
+      try {
+        const historyRef = collection(db, "readingHistory", user.uid, "chapters");
+        const snap = await getDocs(historyRef);
+        const batch = writeBatch(db);
+        snap.docs.forEach((d) => batch.delete(doc(db, "readingHistory", user.uid, "chapters", d.id)));
+        await batch.commit();
+      } catch (e) {
+        console.error("Clear history error:", e);
+      }
     } else {
-      localStorage.removeItem("komikHistory");
+      sessionStorage.removeItem("komikHistory");
     }
     setHistory([]);
   };
