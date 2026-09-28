@@ -44,6 +44,20 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gray-900 text-white flex flex-col justify-between">
       <main className="p-8">
+        <header className="mb-10 text-center max-w-4xl mx-auto">
+          <h1 className="text-4xl font-bold text-blue-400 flex justify-center items-center gap-0.5">
+            <span>Komi</span>
+            <span className="inline-block scale-x-[-1]">K</span>
+            <span>aggy</span>
+          </h1>
+          <p className="text-gray-400 mt-2 text-sm md:text-base leading-relaxed">
+            KomiKaggy adalah situs baca komik, baca manga, baca manhua, dan baca
+            manhwa terpopuler dalam Bahasa Indonesia. Tanpa iklan yang mengganggu
+            dan hanya disini kamu cukup scrolling untuk melihat chapter
+            berikutnya, mudah dan tidak ribet.
+          </p>
+        </header>
+
         {/* Kolom Pencarian dengan Fitur Live Search Dropdown */}
         <div className="max-w-4xl mx-auto mb-8 relative">
           <input
@@ -100,20 +114,6 @@ export default function Home() {
           )}
         </div>
 
-        <header className="mb-10 text-center max-w-4xl mx-auto">
-          <h1 className="text-4xl font-bold text-blue-400 flex justify-center items-center gap-0.5">
-            <span>Komi</span>
-            <span className="inline-block scale-x-[-1]">K</span>
-            <span>aggy</span>
-          </h1>
-          <p className="text-gray-400 mt-2 text-sm md:text-base leading-relaxed">
-            KomiKaggy adalah situs baca komik, baca manga, baca manhua, dan baca
-            manhwa terpopuler dalam Bahasa Indonesia. Tanpa iklan yang mengganggu
-            dan hanya disini kamu cukup scrolling untuk melihat chapter
-            berikutnya, mudah dan tidak ribet.
-          </p>
-        </header>
-
         {/* Riwayat Baca */}
         {isMounted && history.length > 0 && (
           <div className="max-w-4xl mx-auto mb-10 bg-gray-800 p-5 rounded-lg border border-gray-700 shadow-lg">
@@ -155,67 +155,58 @@ export default function Home() {
         )}
 
         {/* Judul Bagian Komik Terpopuler */}
-        <div className="max-w-4xl mx-auto mb-4">
-          <h3 className="text-2xl font-bold text-white">Komik Terpopuler</h3>
-        </div>
+        <div className="max-w-6xl mx-auto mb-6">
+          <h3 className="text-2xl md:text-3xl font-bold text-white mb-6 text-center">
+            Terpopuler Minggu Ini
+          </h3>
+          <div className="flex overflow-x-auto snap-x gap-4 pb-4 md:pb-0 md:grid md:grid-cols-5 md:gap-6 scrollbar-thin">
+            {popularManga.map((manga, index) => {
+              const latestChapter =
+                manga.chapters && manga.chapters.length > 0
+                  ? manga.chapters[manga.chapters.length - 1]
+                  : null;
 
-        {/* Menampilkan 5 Komik Teratas */}
-        <div className="flex flex-col gap-4 max-w-4xl mx-auto">
-          {popularManga.map((manga) => {
-            const latestChapter =
-              manga.chapters && manga.chapters.length > 0
-                ? manga.chapters[manga.chapters.length - 1]
-                : null;
-
-            return (
-              <div
-                key={manga.id}
-                className="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:bg-gray-700 transition-colors duration-200 flex flex-row h-48 md:h-56"
-              >
+              return (
                 <Link
+                  key={manga.id}
                   href={`/manga/${manga.id}`}
-                  className="flex-shrink-0 h-full"
+                  className="group relative bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl hover:bg-gray-700 transition-all duration-300 flex flex-col w-[170px] flex-shrink-0 snap-start md:w-auto"
                 >
-                  <img
-                    src={manga.image}
-                    alt={manga.title}
-                    className="w-32 md:w-40 h-full object-cover hover:opacity-80 transition-opacity"
-                  />
-                </Link>
-
-                <div className="p-4 flex flex-col flex-grow justify-between">
-                  <div>
-                    <Link href={`/manga/${manga.id}`}>
-                      <h2 className="text-xl font-bold text-blue-400 hover:text-blue-300 transition-colors line-clamp-2">
-                        {manga.title}
-                      </h2>
-                    </Link>
-                    <p className="text-sm text-gray-400 mt-1">{manga.genre}</p>
+                  <div className="relative">
+                    <img
+                      src={manga.image}
+                      alt={manga.title}
+                      className="w-full h-48 md:h-60 object-cover group-hover:opacity-90 transition-opacity"
+                    />
+                    <div className="absolute top-2 left-2 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded shadow-md">
+                      #{index + 1}
+                    </div>
+                    <div className="absolute top-2 right-2 bg-yellow-500 text-yellow-900 text-xs font-bold px-2 py-1 rounded shadow-md">
+                      Terpopuler
+                    </div>
                   </div>
-
-                  <div className="mt-auto self-start mt-4">
-                    {latestChapter ? (
-                      <Link
-                        href={`/manga/${manga.id}/chapter/${latestChapter.chapterId}`}
-                      >
-                        <button className="px-6 py-2 bg-blue-600 hover:bg-blue-500 text-white font-medium rounded transition-colors text-sm">
+                  <div className="p-3 flex flex-col flex-grow">
+                    <h2 className="text-sm md:text-base font-bold text-white line-clamp-2 mb-2 group-hover:text-blue-400 transition-colors">
+                      {manga.title}
+                    </h2>
+                    <p className="text-xs text-gray-400 mb-3">{manga.genre}</p>
+                    <div className="mt-auto">
+                      {latestChapter ? (
+                        <span className="inline-block bg-blue-600 text-white text-xs font-semibold px-3 py-1.5 rounded-full">
                           Chapter {latestChapter.chapterId}
-                        </button>
-                      </Link>
-                    ) : (
-                      <Link href={`/manga/${manga.id}`}>
-                        <button className="px-6 py-2 bg-gray-700 hover:bg-gray-600 text-gray-400 font-medium rounded transition-colors text-sm">
+                        </span>
+                      ) : (
+                        <span className="inline-block bg-gray-700 text-gray-400 text-xs font-semibold px-3 py-1.5 rounded-full">
                           Belum ada chapter
-                        </button>
-                      </Link>
-                    )}
+                        </span>
+                      )}
+                    </div>
                   </div>
-                </div>
-              </div>
-            );
-          })}
-
-          <div className="text-center mt-6">
+                </Link>
+              );
+            })}
+          </div>
+          <div className="text-center mt-8">
             <Link href="/komik">
               <button className="px-8 py-3 bg-gray-800 hover:bg-gray-700 border border-gray-700 text-blue-400 font-semibold rounded-lg shadow transition-colors">
                 Lihat Komik Lainnya
