@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { use, useState } from "react";
 import { mangaDatabase } from "../../../data";
+import ComicComments from "../../../components/ComicComments";
 
 export default function MangaDetail({
   params,
@@ -158,6 +159,8 @@ export default function MangaDetail({
             )}
           </div>
         </div>
+
+        <ComicComments mangaId={id} />
       </main>
     </div>
   );

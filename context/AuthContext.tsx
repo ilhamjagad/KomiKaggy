@@ -4,6 +4,8 @@ import { createContext, useContext, useEffect, useState, ReactNode } from "react
 import {
   User,
   signInWithPopup,
+  signInWithRedirect,
+  getRedirectResult,
   GoogleAuthProvider,
   signOut,
   onAuthStateChanged,
@@ -45,6 +47,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         setLoading(false);
       }
     });
+    // Handle redirect result on page load
+    getRedirectResult(auth).catch((err) => console.error("Redirect error:", err));
     return unsubscribe;
   }, []);
 
@@ -70,8 +74,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const signInWithGoogle = async () => {
     try {
       await signInWithPopup(auth, googleProvider);
-    } catch (error) {
-      console.error("Google sign-in error:", error);
+    } catch (error: any) {
+      if (error.code === "auth/popup-blocked" || error.code === "auth/cancelled-popup-request") {
+        try {
+          await signInWithRedirect(auth, googleProvider);
+        } catch (redirectError) {
+          console.error("Google redirect error:", redirectError);
+        }
+      } else {
+        console.error("Google sign-in error:", error);
+      }
     }
   };
 
