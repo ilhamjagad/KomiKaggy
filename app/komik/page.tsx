@@ -60,13 +60,27 @@ function KomikListContent() {
                 ? manga.chapters[manga.chapters.length - 1] 
                 : null;
 
+              const flagMap: Record<string, string> = {
+                manga: "https://flagcdn.com/w40/jp.png",
+                manhwa: "https://flagcdn.com/w40/kr.png",
+                manhua: "https://flagcdn.com/w40/cn.png",
+              };
+              const flagSrc = flagMap[(manga as any).type] || "";
+
               return (
                 <Link
                   key={manga.id}
                   href={`/manga/${manga.id}`}
                   className="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:scale-105 transition-transform duration-200 flex flex-col block"
                 >
-                  <div className="w-full aspect-[2/3] bg-black overflow-hidden flex items-center justify-center">
+                  <div className="w-full aspect-[2/3] bg-black overflow-hidden flex items-center justify-center relative">
+                    {flagSrc && (
+                      <img
+                        src={flagSrc}
+                        alt={(manga as any).type}
+                        className="absolute top-1.5 right-1.5 w-7 h-5 md:w-8 md:h-5 object-cover rounded-sm border border-white/20 shadow-md bg-black/20"
+                      />
+                    )}
                     <img src={manga.image} alt={manga.title} className="w-full h-full object-cover hover:opacity-80 transition-opacity" />
                   </div>
                   
@@ -79,7 +93,7 @@ function KomikListContent() {
                     <div className="mt-2.5 md:mt-4">
                       {latestChapter ? (
                         <div className="w-full py-1.5 md:py-2 bg-blue-600 text-white font-medium rounded-full text-center text-[10px] md:text-xs">
-                          Ch. {latestChapter.chapterId}
+                          Chapter {latestChapter.chapterId}
                         </div>
                       ) : (
                         <div className="w-full py-1.5 md:py-2 bg-gray-700 text-gray-400 font-medium rounded-full text-center text-[10px] md:text-xs">

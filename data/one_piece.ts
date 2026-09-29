@@ -3,6 +3,7 @@ export const onePiece = {
   title: "One Piece",
   author: "Eiichiro Oda",
   status: "Ongoing",
+  type: "manga",
   genre: "Action, Adventure, Comedy, Supernatural, Shounen, Fantasy",
   image:
     "https://thumbnail.komiku.to/uploads/manga/komik-one-piece-indo/manga_thumbnail-Komik-One-Piece.jpg?w=500",
