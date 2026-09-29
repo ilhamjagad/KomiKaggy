@@ -55,6 +55,21 @@ export default function ComicComments({ mangaId }: { mangaId: string }) {
         id: doc.id,
         ...doc.data(),
       })) as Comment[];
+      // Sort by: likes desc → replies count desc → createdAt desc
+      comms.sort((a, b) => {
+        const likesA = a.likes?.length || 0;
+        const likesB = b.likes?.length || 0;
+        if (likesB !== likesA) return likesB - likesA;
+
+        const repliesA = a.replies?.length || 0;
+        const repliesB = b.replies?.length || 0;
+        if (repliesB !== repliesA) return repliesB - repliesA;
+
+        // Final tiebreaker: createdAt
+        const timeA = a.createdAt?.toDate?.()?.getTime() || (a.createdAt ? new Date(a.createdAt).getTime() : 0);
+        const timeB = b.createdAt?.toDate?.()?.getTime() || (b.createdAt ? new Date(b.createdAt).getTime() : 0);
+        return timeB - timeA;
+      });
       setComments(comms);
     });
     return () => unsubscribe();
@@ -330,27 +345,25 @@ export default function ComicComments({ mangaId }: { mangaId: string }) {
                               className="w-7 h-7 rounded-full object-cover border border-gray-700"
                             />
                             <div className="flex-1 min-w-0">
-                              <div className="flex items-center justify-between mb-0.5">
-                                <h5 className="text-xs font-semibold text-white truncate">
-                                  {reply.userName}
-                                </h5>
-                                <span className="text-[9px] text-gray-500">
-                                  {reply.createdAt
-                                    ? new Date(reply.createdAt).toLocaleDateString(
-                                        "id-ID",
-                                        {
-                                          day: "numeric",
-                                          month: "short",
-                                          hour: "2-digit",
-                                          minute: "2-digit",
-                                        }
-                                      )
-                                    : "Baru saja"}
-                                </span>
-                              </div>
-                              <p className="text-xs text-gray-300 break-words">
+                              <h5 className="text-xs font-semibold text-white truncate">
+                                {reply.userName}
+                              </h5>
+                              <p className="text-xs text-gray-300 break-words mb-1">
                                 {reply.text}
                               </p>
+                              <span className="text-[9px] text-gray-500 block">
+                                {reply.createdAt
+                                  ? new Date(reply.createdAt).toLocaleDateString(
+                                      "id-ID",
+                                      {
+                                        day: "numeric",
+                                        month: "short",
+                                        hour: "2-digit",
+                                        minute: "2-digit",
+                                      }
+                                    )
+                                  : "Baru saja"}
+                              </span>
                             </div>
                           </div>
                         ))}
