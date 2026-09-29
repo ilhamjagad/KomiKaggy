@@ -46,14 +46,14 @@ function KomikListContent() {
           <input
             type="text"
             placeholder="Cari judul komik..."
-            className="w-full p-4 rounded-lg bg-gray-800 text-white border border-gray-700 focus:outline-none focus:border-blue-500 transition-colors"
+            className="w-full px-6 py-4 rounded-full bg-gray-800 text-white border border-gray-700 focus:outline-none focus:border-blue-500 transition-colors shadow-lg"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
         </div>
 
         {/* Daftar Seluruh Komik */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div className="grid grid-cols-3 md:grid-cols-4 gap-3 md:gap-6">
           {filteredManga.length > 0 ? (
             filteredManga.map((manga) => {
               const latestChapter = manga.chapters && manga.chapters.length > 0 
@@ -61,38 +61,34 @@ function KomikListContent() {
                 : null;
 
               return (
-                <div key={manga.id} className="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:scale-105 transition-transform duration-200 flex flex-col">
-                  <Link href={`/manga/${manga.id}`}>
-                    <div className="w-full aspect-square bg-black flex items-center justify-center">
-                      <img src={manga.image} alt={manga.title} className="w-full h-full object-cover hover:opacity-80 transition-opacity" />
-                    </div>
-                  </Link>
+                <Link
+                  key={manga.id}
+                  href={`/manga/${manga.id}`}
+                  className="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:scale-105 transition-transform duration-200 flex flex-col block"
+                >
+                  <div className="w-full aspect-[2/3] bg-black overflow-hidden flex items-center justify-center">
+                    <img src={manga.image} alt={manga.title} className="w-full h-full object-cover hover:opacity-80 transition-opacity" />
+                  </div>
                   
-                  <div className="p-4 flex flex-col flex-grow justify-between">
+                  <div className="p-2.5 md:p-4 flex flex-col flex-grow justify-between">
                     <div>
-                      <Link href={`/manga/${manga.id}`}>
-                        <h2 className="text-base font-semibold text-blue-400 hover:text-blue-300 transition-colors line-clamp-1">{manga.title}</h2>
-                      </Link>
-                      <p className="text-xs text-gray-400 mt-1 line-clamp-1">{manga.genre}</p>
+                      <h2 className="text-xs md:text-base font-semibold text-blue-400 hover:text-blue-300 transition-colors line-clamp-1">{manga.title}</h2>
+                      <p className="text-[10px] md:text-xs text-gray-400 mt-0.5 md:mt-1 line-clamp-1">Status: {manga.status}</p>
                     </div>
                     
-                    <div className="mt-4">
+                    <div className="mt-2.5 md:mt-4">
                       {latestChapter ? (
-                        <Link href={`/manga/${manga.id}/chapter/${latestChapter.chapterId}`}>
-                          <button className="w-full py-2 bg-blue-600 hover:bg-blue-500 text-white font-medium rounded transition-colors text-xs">
-                            Chapter {latestChapter.chapterId}
-                          </button>
-                        </Link>
+                        <div className="w-full py-1.5 md:py-2 bg-blue-600 text-white font-medium rounded-full text-center text-[10px] md:text-xs">
+                          Ch. {latestChapter.chapterId}
+                        </div>
                       ) : (
-                        <Link href={`/manga/${manga.id}`}>
-                          <button className="w-full py-2 bg-gray-700 hover:bg-gray-600 text-gray-400 font-medium rounded transition-colors text-xs">
-                            Belum ada chapter
-                          </button>
-                        </Link>
+                        <div className="w-full py-1.5 md:py-2 bg-gray-700 text-gray-400 font-medium rounded-full text-center text-[10px] md:text-xs">
+                          -
+                        </div>
                       )}
                     </div>
                   </div>
-                </div>
+                </Link>
               );
             })
           ) : (

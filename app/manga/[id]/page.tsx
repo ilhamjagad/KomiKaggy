@@ -98,7 +98,7 @@ export default function MangaDetail({
             </div>
 
             <h3 className="text-xl font-semibold mb-2">Sinopsis</h3>
-            <p className="text-gray-400 leading-relaxed">{manga.synopsis}</p>
+            <p className="text-gray-400 leading-relaxed text-justify">{manga.synopsis}</p>
           </div>
         </div>
 
@@ -133,15 +133,16 @@ export default function MangaDetail({
           </div>
 
           {/* Daftar Item Chapter */}
-          <div className="flex flex-col gap-3 max-h-[500px] overflow-y-auto pr-2">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-h-[500px] overflow-y-auto pr-2 content-start">
             {sortedChapters.length > 0 ? (
               sortedChapters.map((chapter) => (
                 <Link
                   key={chapter.chapterId}
                   href={`/manga/${manga.id}/chapter/${chapter.chapterId}`}
+                  className="h-full"
                 >
-                  <div className="flex flex-col bg-gray-700 hover:bg-gray-600 p-4 rounded transition-colors gap-1">
-                    <span className="font-medium text-white">
+                  <div className="flex flex-col justify-center bg-gray-700 hover:bg-gray-600 p-4 rounded transition-colors gap-1 h-full min-h-[68px]">
+                    <span className="font-medium text-white line-clamp-1">
                       {chapter.chapterId}. {chapter.title}
                     </span>
                     <span className="text-xs text-gray-400">
@@ -151,7 +152,7 @@ export default function MangaDetail({
                 </Link>
               ))
             ) : (
-              <div className="text-center text-gray-400 py-6">
+              <div className="text-center text-gray-400 py-6 md:col-span-2">
                 Chapter tidak ditemukan!
               </div>
             )}
