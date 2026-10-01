@@ -8,13 +8,6 @@ export const shingeki_no_kyojin = {
   image: "https://thumbnail.komiku.to/uploads/manga/shingeki-no-kyojin/manga_thumbnail-Komik-Shingeki-no-Kyojin.jpg?w=500",
   synopsis: "Di dunia yang dikuasai oleh makhluk raksasa bernama Titan, umat manusia hidup di balik tembok raksasa untuk bertahan hidup. Eren Yeager, protagonis utama, menyaksikan kehancuran kota dan hilangnya orang-orang terkasih akibat serangan Titan yang tiba-tiba, yang membuatnya bertekad untuk membasmi semua Titan. Bersama teman-temannya Mikasa dan Armin, Eren bergabung dengan militer untuk melawan ancaman tersebut. Dalam perjalanan, Eren menemukan kekuatan misterius yang membuatnya bisa berubah menjadi Titan sendiri. Konflik dan intrik politik mulai terungkap seiring dengan rahasia-rahasia besar tentang asal usul Titan dan pemerintahan manusia yang tersembunyi. Cerita ini menggambarkan perjuangan keras melawan ketakutan dan penemuan identitas di tengah kekacauan dunia yang kacau balau.",
   chapters: [
-    {
-      chapterId: "1",
-      title: "Coming Soon",
-      date: "",
-      pages: [
-        ""
-      ]
-    }
+
   ]
 };
