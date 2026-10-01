@@ -5442,5 +5442,13 @@ export const onePiece = {
         "https://img.komiku.org/upload5/one-piece/250/2025-08-08/10.jpg",
       ],
     },
+    {
+      chapterId: "251",
+      title: "",
+      date: "",
+      pages: [
+	
+      ]
+    },
   ],
 };
