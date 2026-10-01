@@ -1,7 +1,7 @@
 "use client";
 
 import Link from 'next/link';
-import { useState, useEffect, Suspense } from 'react';
+import { useState, useEffect, useMemo, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation'; 
 import { mangaDatabase } from '../../data';
 
@@ -17,11 +17,88 @@ function KomikListContent() {
     }
   }, [searchURL]);
 
-  const reversedMangaDatabase = [...mangaDatabase].reverse();
+  const reversedMangaDatabase = useMemo(() => [...mangaDatabase].reverse(), []);
 
-  const filteredManga = reversedMangaDatabase.filter((manga) =>
-    manga.title.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  const filteredManga = useMemo(() => 
+    reversedMangaDatabase.filter((manga) =>
+      manga.title.toLowerCase().includes(searchQuery.toLowerCase())
+    ), [reversedMangaDatabase, searchQuery]);
+
+  const typeOrder = ['manga', 'manhwa', 'manhua'] as const;
+  const typeLabels: Record<string, string> = {
+    manga: 'Manga',
+    manhwa: 'Manhwa',
+    manhua: 'Manhua',
+  };
+
+  const flagMap: Record<string, string> = {
+    manga: "https://flagcdn.com/w40/jp.png",
+    manhwa: "https://flagcdn.com/w40/kr.png",
+    manhua: "https://flagcdn.com/w40/cn.png",
+  };
+
+  const groupedManga = useMemo(() => {
+    const groups: Record<string, typeof filteredManga> = {
+      manga: [],
+      manhwa: [],
+      manhua: [],
+    };
+    filteredManga.forEach((manga) => {
+      const type = (manga as any).type || 'manga';
+      if (groups[type]) {
+        groups[type].push(manga);
+      } else {
+        groups.manga.push(manga);
+      }
+    });
+    return groups;
+  }, [filteredManga]);
+
+  const MangaCard = ({ manga, className = "" }: { manga: typeof filteredManga[0]; className?: string }) => {
+    const latestChapter = manga.chapters && manga.chapters.length > 0 
+      ? manga.chapters[manga.chapters.length - 1] 
+      : null;
+    const type = (manga as any).type || 'manga';
+    const flagSrc = flagMap[type] || "";
+
+    return (
+      <Link
+        key={manga.id}
+        href={`/manga/${manga.id}`}
+        className={`bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:scale-105 transition-transform duration-200 flex flex-col block ${className}`}
+      >
+        <div className="w-full aspect-[2/3] bg-black overflow-hidden flex items-center justify-center relative">
+          {flagSrc && (
+            <img
+              src={flagSrc}
+              alt={type}
+              className="absolute top-1.5 right-1.5 w-7 h-5 md:w-8 md:h-5 object-cover rounded-sm border border-white/20 shadow-md bg-black/20"
+            />
+          )}
+          <img src={manga.image} alt={manga.title} className="w-full h-full object-cover hover:opacity-80 transition-opacity" />
+        </div>
+        
+        <div className="p-2.5 md:p-4 flex flex-col flex-grow justify-between">
+          <div>
+            <h2 className="text-xs md:text-base font-semibold text-blue-400 hover:text-blue-300 transition-colors line-clamp-1">{manga.title}</h2>
+            <p className="text-[10px] md:text-xs text-gray-400 mt-0.5 md:mt-1 line-clamp-1">Status: {manga.status}</p>
+          </div>
+          
+          <div className="mt-2.5 md:mt-4">
+            {latestChapter ? (
+              <div className="w-full py-1.5 md:py-2 bg-blue-600 text-white font-medium rounded-full text-center text-[10px] md:text-xs">
+                Chapter {latestChapter.chapterId}
+              </div>
+            ) : (
+              <div className="w-full py-1.5 md:py-2 bg-gray-700 text-gray-400 font-medium rounded-full text-center text-[10px] md:text-xs">
+                -
+              </div>
+            )}
+          </div>
+        </div>
+      </Link>
+    );
+  };
 
   return (
     <main className="min-h-screen bg-gray-900 text-white">
@@ -36,7 +113,7 @@ function KomikListContent() {
         <div className="w-16"></div> {/* Penyeimbang agar judul persis di tengah */}
       </div>
 
-      <div className="p-8 max-w-4xl mx-auto">
+      <div className="p-8 max-w-6xl mx-auto">
         <header className="mb-8 text-center">
           <p className="text-gray-400 text-sm md:text-base">Daftar lengkap seluruh koleksi manga, manhua, dan manhwa yang ada di KomiKaggy.</p>
         </header>
@@ -52,65 +129,73 @@ function KomikListContent() {
           />
         </div>
 
-        {/* Daftar Seluruh Komik */}
-        <div className="grid grid-cols-3 md:grid-cols-4 gap-3 md:gap-6">
-          {filteredManga.length > 0 ? (
-            filteredManga.map((manga) => {
-              const latestChapter = manga.chapters && manga.chapters.length > 0 
-                ? manga.chapters[manga.chapters.length - 1] 
-                : null;
-
-              const flagMap: Record<string, string> = {
-                manga: "https://flagcdn.com/w40/jp.png",
-                manhwa: "https://flagcdn.com/w40/kr.png",
-                manhua: "https://flagcdn.com/w40/cn.png",
-              };
-              const flagSrc = flagMap[(manga as any).type] || "";
+        {searchQuery ? (
+          // Search results - simple grid
+          <div className="grid grid-cols-3 md:grid-cols-4 gap-3 md:gap-6">
+            {filteredManga.length > 0 ? (
+              filteredManga.map((manga) => <MangaCard key={manga.id} manga={manga} />)
+            ) : (
+              <div className="col-span-full text-center text-gray-400 py-10">
+                Komik tidak ditemukan!
+              </div>
+            )}
+          </div>
+        ) : (
+          // Grouped by type
+          <div className="space-y-10">
+            {typeOrder.map((type) => {
+              const mangas = groupedManga[type];
+              if (!mangas || mangas.length === 0) return null;
 
               return (
-                <Link
-                  key={manga.id}
-                  href={`/manga/${manga.id}`}
-                  className="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:scale-105 transition-transform duration-200 flex flex-col block"
-                >
-                  <div className="w-full aspect-[2/3] bg-black overflow-hidden flex items-center justify-center relative">
-                    {flagSrc && (
-                      <img
-                        src={flagSrc}
-                        alt={(manga as any).type}
-                        className="absolute top-1.5 right-1.5 w-7 h-5 md:w-8 md:h-5 object-cover rounded-sm border border-white/20 shadow-md bg-black/20"
-                      />
-                    )}
-                    <img src={manga.image} alt={manga.title} className="w-full h-full object-cover hover:opacity-80 transition-opacity" />
-                  </div>
-                  
-                  <div className="p-2.5 md:p-4 flex flex-col flex-grow justify-between">
-                    <div>
-                      <h2 className="text-xs md:text-base font-semibold text-blue-400 hover:text-blue-300 transition-colors line-clamp-1">{manga.title}</h2>
-                      <p className="text-[10px] md:text-xs text-gray-400 mt-0.5 md:mt-1 line-clamp-1">Status: {manga.status}</p>
+                <div key={type} className="space-y-4">
+                  <h2 className="text-xl font-bold text-white flex items-center gap-2">
+                    <img 
+                      src={flagMap[type]} 
+                      alt={typeLabels[type]} 
+                      className="w-6 h-4 object-cover rounded"
+                    />
+                    {typeLabels[type]} ({mangas.length})
+                  </h2>
+                  {mangas.length > 6 ? (
+                    // 2 rows for many comics
+                    <div className="grid grid-rows-2 gap-3 md:grid-cols-6 md:grid-rows-auto md:gap-4">
+                      <div className="flex gap-3 overflow-x-auto snap-x pb-4 scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-gray-900 md:contents md:pb-0 md:overflow-visible md:snap-none">
+                        {mangas.slice(0, Math.ceil(mangas.length / 2)).map((manga) => (
+                          <MangaCard 
+                            key={manga.id} 
+                            manga={manga} 
+                            className="flex-shrink-0 w-[170px] md:w-full md:snap-start" 
+                          />
+                        ))}
+                      </div>
+                      <div className="flex gap-3 overflow-x-auto snap-x pb-4 scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-gray-900 md:contents md:pb-0 md:overflow-visible md:snap-none">
+                        {mangas.slice(Math.ceil(mangas.length / 2)).map((manga) => (
+                          <MangaCard 
+                            key={manga.id} 
+                            manga={manga} 
+                            className="flex-shrink-0 w-[170px] md:w-full md:snap-start" 
+                          />
+                        ))}
+                      </div>
                     </div>
-                    
-                    <div className="mt-2.5 md:mt-4">
-                      {latestChapter ? (
-                        <div className="w-full py-1.5 md:py-2 bg-blue-600 text-white font-medium rounded-full text-center text-[10px] md:text-xs">
-                          Chapter {latestChapter.chapterId}
-                        </div>
-                      ) : (
-                        <div className="w-full py-1.5 md:py-2 bg-gray-700 text-gray-400 font-medium rounded-full text-center text-[10px] md:text-xs">
-                          -
-                        </div>
-                      )}
+                  ) : (
+                    // Single row for few comics
+                    <div className="flex gap-3 overflow-x-auto snap-x pb-4 scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-gray-900 md:grid md:grid-cols-6 md:gap-4 md:overflow-visible md:snap-none md:pb-0">
+                      {mangas.map((manga) => (
+                        <MangaCard 
+                          key={manga.id} 
+                          manga={manga} 
+                          className="flex-shrink-0 w-[170px] md:w-full md:snap-start" 
+                        />
+                      ))}
                     </div>
-                  </div>
-                </Link>
+                  )}
+                </div>
               );
-            })
-          ) : (
-            <div className="col-span-full text-center text-gray-400 py-10">
-              Komik tidak ditemukan!
-            </div>
-          )}
-        </div>
+            })}
+          </div>
+        )}
       </div>
     </main>
   );
