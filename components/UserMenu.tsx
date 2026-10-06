@@ -90,10 +90,6 @@ export default function UserMenu() {
             <div className="flex-1 min-w-0">
               <h4 className="font-bold text-white text-base truncate">{fullName}</h4>
               <p className="text-xs text-gray-400 truncate mt-0.5">{email}</p>
-              <div className="inline-flex items-center gap-1 mt-1 bg-green-500/10 text-green-400 text-[11px] font-medium px-2 py-0.5 rounded-full border border-green-500/20">
-                <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse"></span>
-                <span>Tersinkronisasi Cloud</span>
-              </div>
             </div>
           </div>
 
