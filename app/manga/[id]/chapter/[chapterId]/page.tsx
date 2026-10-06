@@ -23,6 +23,8 @@ export default function ChapterReader({ params }: { params: Promise<{ id: string
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const handleScreenClick = () => setShowNav((prev) => !prev);
+
   const manga = mangaDatabase.find((m) => m.id === id);
   const chapter = manga?.chapters.find((c) => c.chapterId === chapterId);
 
@@ -64,9 +66,12 @@ export default function ChapterReader({ params }: { params: Promise<{ id: string
   const nextChapter = hasNext ? (currentIdx + 1).toString() : null;
 
   return (
-    <main className="min-h-screen bg-black text-gray-300 pb-20">
+    <main className="min-h-screen bg-black text-gray-300 pb-20" onClick={handleScreenClick}>
       {/* Bagian Navigasi Atas (Tanpa tombol kanan, judul di tengah) */}
-      <div className={`sticky top-0 bg-gray-900 border-b border-gray-800 p-4 z-10 flex justify-between items-center shadow-md transition-transform duration-300 ${showNav ? 'translate-y-0' : '-translate-y-full'}`}>
+      <div
+        onClick={(e) => e.stopPropagation()}
+        className={`sticky top-0 bg-gray-900 border-b border-gray-800 p-4 z-10 flex justify-between items-center shadow-md transition-transform duration-300 ${showNav ? 'translate-y-0' : '-translate-y-full'}`}
+      >
         <Link href={`/manga/${manga.id}`}>
           <button className="text-blue-400 hover:text-blue-300 font-medium text-sm md:text-base">Kembali</button>
         </Link>
@@ -79,12 +84,15 @@ export default function ChapterReader({ params }: { params: Promise<{ id: string
       {/* Area Gambar Komik */}
       <div className="max-w-3xl mx-auto flex flex-col items-center">
         {(chapter.pages as string[]).map((page, index) => (
-          <img key={index} src={page} alt={`Hal ${index + 1}`} className="w-full h-auto object-contain block" />
+          <img key={index} src={page} alt={`Hal ${index + 1}`} className="w-full h-auto object-contain block select-none" />
         ))}
       </div>
 
       {/* Navigasi Bawah yang Menempel di Layar (Sticky Bottom) */}
-      <div className={`fixed bottom-0 left-0 right-0 bg-gray-900/95 backdrop-blur border-t border-gray-800 p-4 flex justify-center gap-4 z-20 shadow-lg transition-transform duration-300 ${showNav ? 'translate-y-0' : 'translate-y-full'}`}>
+      <div
+        onClick={(e) => e.stopPropagation()}
+        className={`fixed bottom-0 left-0 right-0 bg-gray-900/95 backdrop-blur border-t border-gray-800 p-4 flex justify-center gap-4 z-20 shadow-lg transition-transform duration-300 ${showNav ? 'translate-y-0' : 'translate-y-full'}`}
+      >
         {/* Tombol Sebelumnya hanya ditampilkan jika prevChapter ada (bukan chapter 1) */}
         {prevChapter && (
           <Link href={`/manga/${manga.id}/chapter/${prevChapter}`}>
