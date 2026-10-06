@@ -1,7 +1,7 @@
 "use client";
 
 import Link from 'next/link';
-import { use, useEffect } from 'react';
+import { use, useEffect, useState } from 'react';
 import { mangaDatabase } from '../../../../../data';
 import { useAuth } from '../../../../../context/AuthContext';
 import { doc, setDoc, serverTimestamp } from 'firebase/firestore';
@@ -10,6 +10,18 @@ import { db } from '../../../../../lib/firebase';
 export default function ChapterReader({ params }: { params: Promise<{ id: string, chapterId: string }> }) {
   const { id, chapterId } = use(params);
   const { user } = useAuth();
+  const [showNav, setShowNav] = useState(true);
+
+  useEffect(() => {
+    let lastScrollY = window.scrollY;
+    const handleScroll = () => {
+      const current = window.scrollY;
+      setShowNav(current <= lastScrollY || current < 50);
+      lastScrollY = current;
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const manga = mangaDatabase.find((m) => m.id === id);
   const chapter = manga?.chapters.find((c) => c.chapterId === chapterId);
@@ -54,7 +66,7 @@ export default function ChapterReader({ params }: { params: Promise<{ id: string
   return (
     <main className="min-h-screen bg-black text-gray-300 pb-20">
       {/* Bagian Navigasi Atas (Tanpa tombol kanan, judul di tengah) */}
-      <div className="sticky top-0 bg-gray-900 border-b border-gray-800 p-4 z-10 flex justify-between items-center shadow-md">
+      <div className={`sticky top-0 bg-gray-900 border-b border-gray-800 p-4 z-10 flex justify-between items-center shadow-md transition-transform duration-300 ${showNav ? 'translate-y-0' : '-translate-y-full'}`}>
         <Link href={`/manga/${manga.id}`}>
           <button className="text-blue-400 hover:text-blue-300 font-medium text-sm md:text-base">Kembali</button>
         </Link>
@@ -72,7 +84,7 @@ export default function ChapterReader({ params }: { params: Promise<{ id: string
       </div>
 
       {/* Navigasi Bawah yang Menempel di Layar (Sticky Bottom) */}
-      <div className="fixed bottom-0 left-0 right-0 bg-gray-900/95 backdrop-blur border-t border-gray-800 p-4 flex justify-center gap-4 z-20 shadow-lg">
+      <div className={`fixed bottom-0 left-0 right-0 bg-gray-900/95 backdrop-blur border-t border-gray-800 p-4 flex justify-center gap-4 z-20 shadow-lg transition-transform duration-300 ${showNav ? 'translate-y-0' : 'translate-y-full'}`}>
         {/* Tombol Sebelumnya hanya ditampilkan jika prevChapter ada (bukan chapter 1) */}
         {prevChapter && (
           <Link href={`/manga/${manga.id}/chapter/${prevChapter}`}>
