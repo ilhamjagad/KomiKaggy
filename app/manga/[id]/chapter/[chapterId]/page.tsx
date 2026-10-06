@@ -60,10 +60,9 @@ export default function ChapterReader({ params }: { params: Promise<{ id: string
     return <div className="p-8 text-white text-center bg-gray-900 min-h-screen">Chapter tidak ditemukan!</div>;
   }
 
-  const currentIdx = parseInt(chapterId);
-  const prevChapter = currentIdx > 1 ? (currentIdx - 1).toString() : null;
-  const hasNext = manga.chapters.some(c => c.chapterId === (currentIdx + 1).toString());
-  const nextChapter = hasNext ? (currentIdx + 1).toString() : null;
+  const chapterIndex = manga.chapters.findIndex((c) => c.chapterId === chapterId);
+  const prevChapter = chapterIndex > 0 ? manga.chapters[chapterIndex - 1].chapterId : null;
+  const nextChapter = chapterIndex < manga.chapters.length - 1 ? manga.chapters[chapterIndex + 1].chapterId : null;
 
   return (
     <main className="min-h-screen bg-black text-gray-300 pb-20" onClick={handleScreenClick}>
