@@ -7,7 +7,7 @@ export const berserk = {
   genre:
     "Fantasy, Horror, Adventure, Action, Seinen, Psychological, Mature, Tragedy, Supernatural",
   image:
-    "https://mangadex.org/covers/801513ba-a712-498c-8f57-cae55b38cc92/81e1c82d-6672-400c-8c58-4ff9bfb89031.jpg",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNAsHM3sCHun2D3r45gl5_2P-zCbBX9BNZN6qUWIbHmA&s=10",
   synopsis:
     "Berserk mengisahkan perjalanan Guts, seorang pejuang tangguh yang berjuang melawan takdir kelam yang membekas dalam hidupnya. Latar belakang kehidupan Guts penuh dengan penderitaan dan pengkhianatan, membuatnya terobsesi dengan balas dendam terhadap sosok yang paling ia percayai, Griffith, pemimpin pasukan Band of the Hawk yang kelam dan ambisius. Dalam perjalanan penuh darah dan konflik supernatural, Guts harus menghadapi tentara iblis, intrik politik, serta pergulatan batin antara kemanusiaan dan kekuatan gelap yang membayangi dirinya. Komik ini menawarkan eksplorasi mendalam tentang kekuatan, pengorbanan, dan pencarian makna hidup di dunia yang keras dan brutal.",
   chapters: [
