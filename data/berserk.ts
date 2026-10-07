@@ -26,7 +26,7 @@ export const berserk = {
       title: "The Brand",
       date: "1 Jan 1990",
       pages: Array.from(
-        { length: 92 },
+        { length: 69 },
         (_, i) =>
           `https://cdn.jsdelivr.net/gh/ilhamjagad/komik-assets@main/berserk/0-02/${i + 1}.jpg`,
       ),
@@ -2852,26 +2852,11 @@ export const berserk = {
       chapterId: "96",
       title: "Elves of Misty Valley",
       date: "14 Mar 1997",
-      pages: [
-        "/images/berserk/96/1.jpg",
-        "/images/berserk/96/2.jpg",
-        "/images/berserk/96/3.jpg",
-        "/images/berserk/96/4.jpg",
-        "/images/berserk/96/5.jpg",
-        "/images/berserk/96/6.jpg",
-        "/images/berserk/96/7.jpg",
-        "/images/berserk/96/8.jpg",
-        "/images/berserk/96/9.jpg",
-        "/images/berserk/96/10.jpg",
-        "/images/berserk/96/11.jpg",
-        "/images/berserk/96/12.jpg",
-        "/images/berserk/96/13.jpg",
-        "/images/berserk/96/14.jpg",
-        "/images/berserk/96/15.jpg",
-        "/images/berserk/96/16.jpg",
-        "/images/berserk/96/17.jpg",
-        "/images/berserk/96/18.jpg",
-      ],
+      pages: Array.from(
+        { length: 18 },
+        (_, i) =>
+          `https://cdn.jsdelivr.net/gh/ilhamjagad/komik-assets@main/berserk/96/${i + 1}.webp`,
+      ),
     },
     {
       chapterId: "97",
