@@ -40,7 +40,8 @@ export const berserk = {
         (_, i) =>
           `https://cdn.jsdelivr.net/gh/ilhamjagad/komik-assets@4e495c6/berserk/0-03/${i + 1}.webp`,
       ),
-    },{
+    },
+    {
       chapterId: "0-04",
       title: "Guardian Angels of Desire",
       date: "1 Oct 1990",
@@ -58,6 +59,16 @@ export const berserk = {
         { length: 106 },
         (_, i) =>
           `https://cdn.jsdelivr.net/gh/ilhamjagad/komik-assets@7fa715f/berserk/0-05/1%20(${i + 1}).webp`,
+      ),
+    },
+    {
+      chapterId: "0-06",
+      title: "Guardian Angels of Desire",
+      date: "1 Mar 1991",
+      pages: Array.from(
+        { length: 61 },
+        (_, i) =>
+          `https://cdn.jsdelivr.net/gh/ilhamjagad/komik-assets@7a9b1f2/berserk/0-06/0-06%20(${i + 1}).webp`,
       ),
     },
     {
