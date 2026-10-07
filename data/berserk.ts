@@ -86,27 +86,30 @@ export const berserk = {
       title: "Guardian Angels of Desire",
       date: "1 May 1991",
       pages: Array.from(
-  { length: 58 },
-  (_, i) => `https://cdn.jsdelivr.net/gh/ilhamjagad/komik-assets@ce5fb5e/berserk/0-08/0-08%20(${i + 1}).webp`
-),
+        { length: 58 },
+        (_, i) =>
+          `https://cdn.jsdelivr.net/gh/ilhamjagad/komik-assets@ce5fb5e/berserk/0-08/0-08%20(${i + 1}).webp`,
+      ),
     },
     {
       chapterId: "0-09",
       title: "Golden Age",
       date: "1 Aug 1991",
       pages: Array.from(
-  { length: 47 },
-  (_, i) => `https://cdn.jsdelivr.net/gh/ilhamjagad/komik-assets@df95d42/berserk/0-09/0-09%20(${i + 1}).webp`
-),
+        { length: 47 },
+        (_, i) =>
+          `https://cdn.jsdelivr.net/gh/ilhamjagad/komik-assets@df95d42/berserk/0-09/0-09%20(${i + 1}).webp`,
+      ),
     },
     {
       chapterId: "0-10",
       title: "Golden Age",
       date: "1 Sep 1991",
       pages: Array.from(
-  { length: 55 },
-  (_, i) => `https://cdn.jsdelivr.net/gh/ilhamjagad/komik-assets@1dc3d2b/berserk/0-10/0-10%20(${i + 1}).webp`
-),
+        { length: 55 },
+        (_, i) =>
+          `https://cdn.jsdelivr.net/gh/ilhamjagad/komik-assets@1dc3d2b/berserk/0-10/0-10%20(${i + 1}).webp`,
+      ),
     },
     {
       chapterId: "1",
