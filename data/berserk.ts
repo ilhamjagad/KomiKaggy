@@ -2865,7 +2865,7 @@ export const berserk = {
       pages: Array.from(
         { length: 22 },
         (_, i) =>
-          `https://cdn.jsdelivr.net/gh/ilhamjagad/komik-assets@d673521/berserk/97/${i + 1}.webp`,
+          `https://cdn.jsdelivr.net/gh/ilhamjagad/komik-assets@09d35ef/berserk/97/${i + 1}.webp`,
       ),
     },
     {
