@@ -83,7 +83,14 @@ export default function ChapterReader({ params }: { params: Promise<{ id: string
       {/* Area Gambar Komik */}
       <div className="max-w-3xl mx-auto flex flex-col items-center">
         {(chapter.pages as string[]).map((page, index) => (
-          <img key={index} src={page} alt={`Hal ${index + 1}`} className="w-full h-auto object-contain block select-none" />
+          <img
+            key={index}
+            src={page}
+            alt={`Hal ${index + 1}`}
+            loading={index === 0 ? "eager" : "lazy"}
+            decoding="async"
+            className="w-full h-auto object-contain block select-none"
+          />
         ))}
       </div>
 
