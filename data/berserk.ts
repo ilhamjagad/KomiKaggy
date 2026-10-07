@@ -51,6 +51,16 @@ export const berserk = {
       ),
     },
     {
+      chapterId: "0-05",
+      title: "Guardian Angels of Desire",
+      date: "1 Dec 1990",
+      pages: Array.from(
+        { length: 106 },
+        (_, i) =>
+          `https://cdn.jsdelivr.net/gh/ilhamjagad/komik-assets@7fa715f/berserk/0-05/1%20(${i + 1}).webp`,
+      ),
+    },
+    {
       chapterId: "1",
       title: "Sword Wind",
       date: "9 Oct 1992",
