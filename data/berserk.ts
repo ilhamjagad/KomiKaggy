@@ -18,7 +18,7 @@ export const berserk = {
       pages: Array.from(
         { length: 92 },
         (_, i) =>
-          `https://cdn.jsdelivr.net/gh/ilhamjagad/komik-assets@main/berserk/0-01/${i + 1}.jpg`,
+          `https://cdn.jsdelivr.net/gh/ilhamjagad/komik-assets@main/berserk/0-01/${i + 1}.webp`,
       ),
     },
     {
@@ -28,7 +28,7 @@ export const berserk = {
       pages: Array.from(
         { length: 69 },
         (_, i) =>
-          `https://cdn.jsdelivr.net/gh/ilhamjagad/komik-assets@main/berserk/0-02/${i + 1}.jpg`,
+          `https://cdn.jsdelivr.net/gh/ilhamjagad/komik-assets@main/berserk/0-02/${i + 1}.webp`,
       ),
     },
     {
