@@ -2865,7 +2865,7 @@ export const berserk = {
       pages: Array.from(
         { length: 22 },
         (_, i) =>
-          `https://cdn.jsdelivr.net/gh/ilhamjagad/komik-assets@d673521/berserk/97/${i + 1}.webp`,
+          `https://cdn.jsdelivr.net/gh/ilhamjagad/komik-assets@09d35ef/berserk/97/${i + 1}.webp`,
       ),
     },
     {
@@ -2875,7 +2875,7 @@ export const berserk = {
       pages: Array.from(
         { length: 19 },
         (_, i) =>
-          `https://cdn.jsdelivr.net/gh/ilhamjagad/komik-assets@d673521/berserk/98/${i + 1}.webp`,
+          `https://cdn.jsdelivr.net/gh/ilhamjagad/komik-assets@09d35ef/berserk/98/${i + 1}.webp`,
       ),
     },
     {
@@ -2885,7 +2885,7 @@ export const berserk = {
       pages: Array.from(
         { length: 20 },
         (_, i) =>
-          `https://cdn.jsdelivr.net/gh/ilhamjagad/komik-assets@d673521/berserk/99/${i + 1}.webp`,
+          `https://cdn.jsdelivr.net/gh/ilhamjagad/komik-assets@09d35ef/berserk/99/${i + 1}.webp`,
       ),
     },
     {
@@ -2895,7 +2895,7 @@ export const berserk = {
       pages: Array.from(
         { length: 26 },
         (_, i) =>
-          `https://cdn.jsdelivr.net/gh/ilhamjagad/komik-assets@d673521/berserk/100/${i + 1}.webp`,
+          `https://cdn.jsdelivr.net/gh/ilhamjagad/komik-assets@09d35ef/berserk/100/${i + 1}.webp`,
       ),
     },
   ],
