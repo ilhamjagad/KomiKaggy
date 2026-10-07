@@ -36,9 +36,9 @@ export const berserk = {
       title: "Guardian Angels of Desire",
       date: "1 Sep 1990",
       pages: Array.from(
-        { length:55 },
+        { length: 55 },
         (_, i) =>
-          `https://cdn.jsdelivr.net/gh/ilhamjagad/komik-assets@main/berserk//${i + 1}.webp`,
+          `https://cdn.jsdelivr.net/gh/ilhamjagad/komik-assets@4e495c6/berserk/0-03/${i + 1}.webp`,
       ),
     },
     {
