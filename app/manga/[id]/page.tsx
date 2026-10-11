@@ -34,9 +34,17 @@ export default function MangaDetail({
       chapter.title.toLowerCase().includes(chapterSearch.toLowerCase()),
   );
 
+  const parseChapterNumber = (id: string) => {
+    if (id.includes("-")) {
+      const parts = id.split("-").map(Number);
+      return parts[0] + (parts[1] || 0) / 1000;
+    }
+    return parseFloat(id) || 0;
+  };
+
   const sortedChapters = [...filteredChapters].sort((a, b) => {
-    const numA = parseFloat(a.chapterId) || 0;
-    const numB = parseFloat(b.chapterId) || 0;
+    const numA = parseChapterNumber(a.chapterId);
+    const numB = parseChapterNumber(b.chapterId);
     if (sortOrder === "terbaru") {
       return numB - numA;
     } else {
