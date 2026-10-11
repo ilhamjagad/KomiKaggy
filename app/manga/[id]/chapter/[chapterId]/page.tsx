@@ -89,7 +89,8 @@ export default function ChapterReader({ params }: { params: Promise<{ id: string
             alt={`Hal ${index + 1}`}
             loading={index === 0 ? "eager" : "lazy"}
             decoding="async"
-            className="w-full h-auto object-contain block select-none"
+            referrerPolicy="no-referrer"
+            className="w-full h-auto min-h-[200px] object-contain block select-none bg-gray-900"
           />
         ))}
       </div>
