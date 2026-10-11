@@ -18,7 +18,7 @@ export const berserk = {
       pages: Array.from(
         { length: 92 },
         (_, i) =>
-          `https://cdn.jsdelivr.net/gh/ilhamjagad/komik-assets@ca4ed34/berserk/0-01/${i + 1}.webp`,
+          `https://cdn.jsdelivr.net/gh/ilhamjagad/komik-assets@main/berserk/0-01/${i + 1}.webp`,
       ),
     },
     {
@@ -28,7 +28,7 @@ export const berserk = {
       pages: Array.from(
         { length: 69 },
         (_, i) =>
-          `https://ik.imagekit.io/ilhamjagad/berserk/0-02/${i + 1}.webp`,
+          `https://cdn.jsdelivr.net/gh/ilhamjagad/komik-assets@main/berserk/0-02/${i + 1}.webp`,
       ),
     },
     {
@@ -38,7 +38,7 @@ export const berserk = {
       pages: Array.from(
         { length: 55 },
         (_, i) =>
-          `https://ik.imagekit.io/ilhamjagad/berserk/0-03/${i + 1}.webp`,
+          `https://cdn.jsdelivr.net/gh/ilhamjagad/komik-assets@main/berserk/0-03/${i + 1}.webp`,
       ),
     },
     {
@@ -48,7 +48,7 @@ export const berserk = {
       pages: Array.from(
         { length: 121 },
         (_, i) =>
-          `https://ik.imagekit.io/ilhamjagad/berserk/0-04/${i + 1}.webp`,
+          `https://cdn.jsdelivr.net/gh/ilhamjagad/komik-assets@main/berserk/0-04/${i + 1}.webp`,
       ),
     },
     {
@@ -58,7 +58,7 @@ export const berserk = {
       pages: Array.from(
         { length: 106 },
         (_, i) =>
-          `https://ik.imagekit.io/ilhamjagad/berserk/0-05/1%20(${i + 1}).webp`,
+          `https://cdn.jsdelivr.net/gh/ilhamjagad/komik-assets@main/berserk/0-05/1%20(${i + 1}).webp`,
       ),
     },
     {
@@ -68,7 +68,7 @@ export const berserk = {
       pages: Array.from(
         { length: 61 },
         (_, i) =>
-          `https://ik.imagekit.io/ilhamjagad/berserk/0-06/0-06%20(${i + 1}).webp`,
+          `https://cdn.jsdelivr.net/gh/ilhamjagad/komik-assets@main/berserk/0-06/0-06%20(${i + 1}).webp`,
       ),
     },
     {
@@ -78,7 +78,7 @@ export const berserk = {
       pages: Array.from(
         { length: 53 },
         (_, i) =>
-          `https://ik.imagekit.io/ilhamjagad/berserk/0-07/0-07%20(${i + 1}).webp`,
+          `https://cdn.jsdelivr.net/gh/ilhamjagad/komik-assets@main/berserk/0-07/0-07%20(${i + 1}).webp`,
       ),
     },
     {
@@ -88,7 +88,7 @@ export const berserk = {
       pages: Array.from(
         { length: 58 },
         (_, i) =>
-          `https://ik.imagekit.io/ilhamjagad/berserk/0-08/0-08%20(${i + 1}).webp`,
+          `https://cdn.jsdelivr.net/gh/ilhamjagad/komik-assets@main/berserk/0-08/0-08%20(${i + 1}).webp`,
       ),
     },
     {
@@ -98,7 +98,7 @@ export const berserk = {
       pages: Array.from(
         { length: 47 },
         (_, i) =>
-          `https://ik.imagekit.io/ilhamjagad/berserk/0-09/0-09%20(${i + 1}).webp`
+          `https://cdn.jsdelivr.net/gh/ilhamjagad/komik-assets@main/berserk/0-09/0-09%20(${i + 1}).webp`,
       ),
     },
     {
@@ -108,7 +108,7 @@ export const berserk = {
       pages: Array.from(
         { length: 55 },
         (_, i) =>
-          `https://ik.imagekit.io/ilhamjagad/berserk/0-10/0-10%20(${i + 1}).webp`
+          `https://cdn.jsdelivr.net/gh/ilhamjagad/komik-assets@main/berserk/0-10/0-10%20(${i + 1}).webp`,
       ),
     },
     {
@@ -118,7 +118,7 @@ export const berserk = {
       pages: Array.from(
         { length: 48 },
         (_, i) =>
-          `https://ik.imagekit.io/ilhamjagad/berserk/0-11/0-11%20(${i + 1}).webp`,
+          `https://cdn.jsdelivr.net/gh/ilhamjagad/komik-assets@main/berserk/0-11/0-11%20(${i + 1}).webp`,
       ),
     },
     {
@@ -128,7 +128,7 @@ export const berserk = {
       pages: Array.from(
         { length: 43 },
         (_, i) =>
-          `https://ik.imagekit.io/ilhamjagad/berserk/0-12/0-12%20(${i + 1}).webp`,
+          `https://cdn.jsdelivr.net/gh/ilhamjagad/komik-assets@main/berserk/0-12/0-12%20(${i + 1}).webp`,
       ),
     },
     {
@@ -138,7 +138,7 @@ export const berserk = {
       pages: Array.from(
         { length: 43 },
         (_, i) =>
-          `https://ik.imagekit.io/ilhamjagad/berserk/0-13/0-13%20(${i + 1}).webp`,
+          `https://cdn.jsdelivr.net/gh/ilhamjagad/komik-assets@main/berserk/0-13/0-13%20(${i + 1}).webp`,
       ),
     },
     {
@@ -148,7 +148,7 @@ export const berserk = {
       pages: Array.from(
         { length: 41 },
         (_, i) =>
-          `https://ik.imagekit.io/ilhamjagad/berserk/0-14/0-14%20(${i + 1}).webp`,
+          `https://cdn.jsdelivr.net/gh/ilhamjagad/komik-assets@main/berserk/0-14/0-14%20(${i + 1}).webp`,
       ),
     },
     {
@@ -158,7 +158,7 @@ export const berserk = {
       pages: Array.from(
         { length: 41 },
         (_, i) =>
-          `https://ik.imagekit.io/ilhamjagad/berserk/0-15/0-15%20(${i + 1}).webp`,
+          `https://cdn.jsdelivr.net/gh/ilhamjagad/komik-assets@main/berserk/0-15/0-15%20(${i + 1}).webp`,
       ),
     },
     {
@@ -2985,7 +2985,7 @@ export const berserk = {
       pages: Array.from(
         { length: 18 },
         (_, i) =>
-          `https://ik.imagekit.io/ilhamjagad/berserk/96/${i + 1}.webp`,
+          `https://cdn.jsdelivr.net/gh/ilhamjagad/komik-assets@main/berserk/96/${i + 1}.webp`,
       ),
     },
     {
@@ -2995,7 +2995,7 @@ export const berserk = {
       pages: Array.from(
         { length: 22 },
         (_, i) =>
-          `https://ik.imagekit.io/ilhamjagad/berserk/97/${i + 1}.webp`,
+          `https://cdn.jsdelivr.net/gh/ilhamjagad/komik-assets@main/berserk/97/${i + 1}.webp`,
       ),
     },
     {
@@ -3005,7 +3005,7 @@ export const berserk = {
       pages: Array.from(
         { length: 19 },
         (_, i) =>
-          `https://ik.imagekit.io/ilhamjagad/berserk/98/${i + 1}.webp`,
+          `https://cdn.jsdelivr.net/gh/ilhamjagad/komik-assets@main/berserk/98/${i + 1}.webp`,
       ),
     },
     {
@@ -3015,7 +3015,7 @@ export const berserk = {
       pages: Array.from(
         { length: 20 },
         (_, i) =>
-          `https://ik.imagekit.io/ilhamjagad/berserk/99/${i + 1}.webp`,
+          `https://cdn.jsdelivr.net/gh/ilhamjagad/komik-assets@main/berserk/99/${i + 1}.webp`,
       ),
     },
     {
@@ -3025,7 +3025,7 @@ export const berserk = {
       pages: Array.from(
         { length: 26 },
         (_, i) =>
-          `https://ik.imagekit.io/ilhamjagad/berserk/100/${i + 1}.webp`,
+          `https://cdn.jsdelivr.net/gh/ilhamjagad/komik-assets@main/berserk/100/${i + 1}.webp`,
       ),
     },
   ],
