@@ -101,18 +101,23 @@ export default function Home() {
         {/* Kolom Pencarian dengan Fitur Live Search Dropdown + Profile Icon */}
         <div className="max-w-4xl mx-auto mb-8 relative">
           <div className="flex items-center gap-3">
-            <input
-              type="text"
-              placeholder="Cari judul komik..."
-              className="flex-1 px-6 py-4 rounded-full bg-gray-800 text-white border border-gray-700 focus:outline-none focus:border-blue-500 transition-colors shadow-lg"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              onKeyDown={(e) => {
-                if (e.key === "Enter" && searchQuery.trim() !== "") {
-                  router.push(`/komik?search=${encodeURIComponent(searchQuery)}`);
-                }
-              }}
-            />
+            <div className="flex-1 relative">
+              <svg className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+              <input
+                type="text"
+                placeholder="Cari judul komik..."
+                className="w-full pl-12 pr-6 py-4 rounded-full bg-gray-800 text-white border border-gray-700 focus:outline-none focus:border-blue-500 transition-colors shadow-lg"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" && searchQuery.trim() !== "") {
+                    router.push(`/komik?search=${encodeURIComponent(searchQuery)}`);
+                  }
+                }}
+              />
+            </div>
             <UserMenu />
           </div>
 
