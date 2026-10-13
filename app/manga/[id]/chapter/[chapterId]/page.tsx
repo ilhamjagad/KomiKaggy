@@ -16,7 +16,9 @@ export default function ChapterReader({ params }: { params: Promise<{ id: string
     let lastScrollY = window.scrollY;
     const handleScroll = () => {
       const current = window.scrollY;
-      setShowNav(current <= lastScrollY || current < 50);
+      if (current > lastScrollY && current > 50) {
+        setShowNav(false);
+      }
       lastScrollY = current;
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
