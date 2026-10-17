@@ -100,16 +100,16 @@ export default function ChapterReader({ params }: { params: Promise<{ id: string
       {/* Navigasi Bawah yang Menempel di Layar (Sticky Bottom) */}
       <div
         onClick={(e) => e.stopPropagation()}
-        className={`fixed bottom-0 left-0 right-0 bg-gray-900/95 backdrop-blur border-t border-gray-800 p-4 flex justify-between items-center z-20 shadow-lg transition-transform duration-300 ${showNav ? 'translate-y-0' : 'translate-y-full'}`}
+        className={`fixed bottom-0 left-0 right-0 bg-gray-900/95 backdrop-blur border-t border-gray-800 p-4 flex items-center z-20 shadow-lg transition-transform duration-300 ${showNav ? 'translate-y-0' : 'translate-y-full'} ${prevChapter && nextChapter ? 'justify-between' : 'justify-center'}`}
       >
         {/* Tombol Sebelumnya hanya ditampilkan jika prevChapter ada (bukan chapter 1) */}
-        {prevChapter ? (
+        {prevChapter && (
           <Link href={`/manga/${manga.id}/chapter/${prevChapter}`}>
             <button className="px-5 py-2.5 bg-gray-700 hover:bg-gray-600 rounded text-white text-sm font-medium transition-colors">
               Sebelumnya
             </button>
           </Link>
-        ) : <div />}
+        )}
 
         {/* Tombol Selanjutnya hanya ditampilkan jika nextChapter ada */}
         {nextChapter && (
