@@ -6,7 +6,7 @@ export const jujutsuKaisen = {
   type: "manga",
   genre: "Action, Supernatural, Fantasy, Demons, Shounen",
   image:
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7dPgF5R7U8NCPR8GDTcHlfkPCAaL1eLEp3W39QEjEmw&s=10",
+    "https://static.wikia.nocookie.net/jujutsu-kaisen/images/5/52/Volume_30.png/revision/latest?cb=20250726004803",
   synopsis:
     "Jujutsu Kaisen mengikuti kisah Yuji Itadori, seorang siswa SMA yang secara tak sengaja terlibat dalam dunia ilmu kutukan setelah menemukan sebuah jari terkutuk milik sosok jahat yang kuat. Demi melindungi teman-teman dan orang-orang di sekitarnya, Yuji bergabung dengan sekolah Jujutsu Tokyo untuk mempelajari cara melawan dan mengendalikan kutukan yang mengancam umat manusia. Dalam perjalanan ini, Yuji bertemu dengan berbagai karakter unik seperti Megumi Fushiguro dan Nobara Kugisaki yang memiliki kekuatan dan motivasi masing-masing. Bersama-sama, mereka menghadapi ancaman berbahaya dari makhluk kutukan yang semakin besar dan misteri di balik asal mula kekuatan kutukan itu sendiri mulai terungkap seiring mereka semakin mendalami dunia ilmu Jujutsu.",
   chapters: [
