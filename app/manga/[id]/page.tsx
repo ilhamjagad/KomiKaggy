@@ -61,9 +61,9 @@ export default function MangaDetail({
         <div className="w-full flex items-center">
           <Link 
             href="/" 
-            className="text-base font-normal text-blue-400 hover:text-blue-300 flex items-center gap-2 transition-colors"
+            className="text-blue-400 hover:text-blue-300 font-medium text-sm md:text-base transition-colors"
           >
-            Beranda
+            Kembali
           </Link>
         </div>
       </header>
@@ -107,7 +107,7 @@ export default function MangaDetail({
             </div>
 
             <h3 className="text-xl font-semibold mb-2">Sinopsis</h3>
-            <p className="text-gray-400 leading-relaxed text-justify">{manga.synopsis}</p>
+            <p className="text-gray-400 text-sm md:text-base leading-relaxed text-justify">{manga.synopsis}</p>
           </div>
         </div>
 
