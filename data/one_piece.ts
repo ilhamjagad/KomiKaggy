@@ -6,7 +6,7 @@ export const onePiece = {
   type: "manga",
   genre: "Action, Adventure, Comedy, Supernatural, Shounen, Fantasy",
   image:
-    "https://static.wikia.nocookie.net/onepiece/images/a/a9/Volume_115.png/revision/latest/scale-to-width-down/1000?cb=20260710204440",
+    "https://comicvine.gamespot.com/a/uploads/scale_small/11158/111586527/10114416-7689016632-97840.jpg",
   synopsis:
     "One Piece mengikuti petualangan Monkey D. Luffy, seorang pemuda yang bermimpi menjadi Raja Bajak Laut dengan menemukan harta karun legendaris bernama One Piece. Dalam perjalanannya, Luffy membentuk kru yang terdiri dari berbagai karakter unik dan kuat, masing-masing memiliki tujuan dan impian mereka sendiri. Bersama-sama, mereka menghadapi berbagai rintangan, musuh tangguh, dan misteri dunia yang luas. Cerita ini memberikan gambaran tentang persahabatan, keberanian, dan semangat pantang menyerah saat para karakter tidak hanya berjuang untuk kekayaan atau kekuasaan, tetapi juga untuk melindungi nilai-nilai yang mereka percayai. One Piece juga mengeksplorasi dunia yang penuh dengan kerajaan, bajak laut, dan Pemerintah Dunia yang berusaha mengendalikan lautan.",
   chapters: [
