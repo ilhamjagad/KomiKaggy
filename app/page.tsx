@@ -64,18 +64,10 @@ export default function Home() {
     setHistory([]);
   };
 
-  const mangaReadCounts: { [key: string]: number } = {};
-  history.forEach((item) => {
-    mangaReadCounts[item.manga_id || item.id] = (mangaReadCounts[item.manga_id || item.id] || 0) + 1;
-  });
-
-  const sortedMangaDatabase = [...mangaDatabase].sort((a, b) => {
-    const countA = mangaReadCounts[a.id] || 0;
-    const countB = mangaReadCounts[b.id] || 0;
-    return countB - countA;
-  });
-
-  const popularManga = sortedMangaDatabase.slice(0, 5);
+  const popularOrder = ["1", "3", "4", "2", "5"]; // one_piece, naruto, bleach, jujutsu, berserk
+  const popularManga = popularOrder
+    .map((id) => mangaDatabase.find((m) => m.id === id))
+    .filter(Boolean);
 
   const filteredLiveSearch = mangaDatabase.filter((manga) =>
     manga.title.toLowerCase().includes(searchQuery.toLowerCase()),
@@ -205,7 +197,7 @@ export default function Home() {
         {/* Judul Bagian Komik Terpopuler */}
         <div className="max-w-6xl mx-auto mb-6">
           <h3 className="text-2xl md:text-3xl font-bold text-white mb-6 text-center">
-            Terpopuler Minggu Ini
+            Komik Terpopuler
           </h3>
           <div className="flex overflow-x-auto snap-x gap-4 pb-4 md:pb-0 md:grid md:grid-cols-5 md:gap-6 scrollbar-thin">
             {popularManga.map((manga, index) => {
