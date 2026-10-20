@@ -67,7 +67,7 @@ export default function Home() {
   const popularOrder = ["1", "3", "4", "2", "5"]; // one_piece, naruto, bleach, jujutsu, berserk
   const popularManga = popularOrder
     .map((id) => mangaDatabase.find((m) => m.id === id))
-    .filter(Boolean);
+    .filter((m): m is typeof mangaDatabase[0] => m !== undefined);
 
   const filteredLiveSearch = mangaDatabase.filter((manga) =>
     manga.title.toLowerCase().includes(searchQuery.toLowerCase()),
