@@ -14,6 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  referrer: "no-referrer",
   metadataBase: new URL("https://komikaggy.vercel.app"),
   title: {
     default: "KomiKaggy - Baca Komik, Manga, Manhua & Manhwa Indonesia",
