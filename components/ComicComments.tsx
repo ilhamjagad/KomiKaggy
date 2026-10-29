@@ -71,6 +71,8 @@ export default function ComicComments({ mangaId }: { mangaId: string }) {
         return timeB - timeA;
       });
       setComments(comms);
+    }, (error) => {
+      console.error("Firebase error pada komentar:", error);
     });
     return () => unsubscribe();
   }, [mangaId]);
